@@ -16,7 +16,18 @@ class MyApp(QWidget):
         self.pushButton.clicked.connect(self.calculate)
 
     def calculate(self) -> None:
-        pass
+        base = float(self.lineEdit.text())
+        nic_str = float(self.lineEdit_2.text())
+        booster_str = float(self.lineEdit_3.text())
+        total_flavor_percentage = float(self.lineEdit_4.text())
+
+        nic_ans = (base * nic_str) / booster_str
+        flavors_ans = (total_flavor_percentage * base) / 100
+        base_ans = base - (nic_ans + flavors_ans)
+
+        self.textEdit.setText(f'Booster: {nic_ans:.1f} ml \n'+
+                              f'Flavors: {flavors_ans:.1f} ml \n'+
+                              f'Base: {base_ans:.1f} ml \n')
 
 
 app = QApplication([])
